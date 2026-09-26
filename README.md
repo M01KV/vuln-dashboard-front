@@ -4,8 +4,7 @@ Interface web (HTML/CSS/JS puro, sem frameworks) para cadastrar ativos
 (softwares/versões) e visualizar as vulnerabilidades conhecidas (CVEs)
 relacionadas a eles, consultadas via NVD API através da API back-end.
 
-Este repositório implementa a camada **Interface (Front-End)** do MVP,
-seguindo o **Cenário 1.1**: Interface (Front-End) + API (Back-End) + API Externa.
+Este repositório implementa a camada **Interface (Front-End)** do MVP: Interface (Front-End) + API (Back-End) + API Externa.
 
 > Repositório irmão: [`vuln-dashboard-api`](../vuln-dashboard-api) — a API que
 > este front-end consome. **A interface nunca chama a NVD diretamente.**
@@ -178,14 +177,3 @@ docker compose up --build
 | Local (sem Docker)| edite `assets/js/env.js` diretamente                                            |
 | Docker (`docker run`) | variável de ambiente `API_BASE_URL` no `docker run`                        |
 | docker-compose    | variável `API_BASE_URL` do serviço `front` em `docker-compose.yml`             |
-
-## Conformidade com os requisitos do MVP (Cenário 1.1)
-
-- [x] Interface faz chamadas a rotas **GET**, **POST**, **PUT** e **DELETE** do back-end
-- [x] README com título, descrição, instruções de instalação e diagrama de arquitetura (Mermaid)
-- [x] Dockerfile funcional na raiz do repositório
-- [x] `docker-compose.yml` na raiz **deste** repositório (Interface), unindo os dois serviços
-- [x] Domínio distinto dos exemplos da disciplina (painel de segurança/CVEs, não e-commerce nem finanças)
-- [x] Interações e visualizações além do básico: badges por severidade, mini gráfico de resumo, estados de erro tratados, chave de API opcional
-- [x] Uso de API externa pública e gratuita (NVD), com licença, cadastro e rotas documentados nesta página
-- [x] Consumo e tratamento dos dados da API externa sem redirecionar o usuário para fora da aplicação
