@@ -1,0 +1,45 @@
+# docker-compose.yml — sobe front-end e back-end juntos.
+#
+# Pré-requisito: este arquivo espera que os dois repositórios estejam lado a
+# lado na mesma pasta pai, por exemplo:
+#
+#   projetos/
+#   ├── vuln-dashboard-api/
+#   └── vuln-dashboard-front/   <- você está aqui
+#
+# Uso:
+#   docker compose up --build
+#
+# Front-end: http://localhost:8080
+# API + Swagger: http://localhost:8000/docs
+
+services:
+  api:
+    build:
+      context: ../vuln-dashboard-api
+    container_name: vuln-dashboard-api
+    ports:
+      - "8000:8000"
+    environment:
+      - CORS_ORIGINS=*
+      # - NVD_API_KEY=coloque_sua_chave_aqui
+      # - WRITE_API_KEY=defina_uma_chave_para_proteger_escrita
+    volumes:
+      - vuln_dashboard_data:/app/data
+    restart: unless-stopped
+
+  front:
+    build:
+      context: .
+    container_name: vuln-dashboard-front
+    ports:
+      - "8080:80"
+    environment:
+      # Do ponto de vista do navegador do usuário, a API está em localhost:8000
+      - API_BASE_URL=http://localhost:8000
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  vuln_dashboard_data:

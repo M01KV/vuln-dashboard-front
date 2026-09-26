@@ -1,0 +1,7 @@
+# Dependências (não usadas neste projeto, mas por segurança)
+node_modules/
+
+# Editor / SO
+.vscode/
+.idea/
+.DS_Store

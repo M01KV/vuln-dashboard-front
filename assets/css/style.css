@@ -1,0 +1,492 @@
+/* ---------------------------------------------------------------------- */
+/* Tokens                                                                  */
+/* ---------------------------------------------------------------------- */
+:root {
+  --bg: #0d1220;
+  --surface: #141b2e;
+  --surface-alt: #1b2540;
+  --border: #2a3552;
+  --text: #e8ecf7;
+  --text-muted: #8b96b8;
+  --accent: #3ed9c4;
+  --accent-strong: #21b8a4;
+  --accent-contrast: #06231f;
+
+  --sev-critical: #e5484d;
+  --sev-high: #f0883e;
+  --sev-medium: #e8c547;
+  --sev-low: #45b577;
+  --sev-desconhecida: #6b7590;
+
+  --radius: 10px;
+  --font-ui: "Inter", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 700;
+}
+
+button, input, select {
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Topbar                                                                  */
+/* ---------------------------------------------------------------------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.topbar__mark {
+  color: var(--accent);
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.topbar h1 {
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.topbar__subtitle {
+  margin: 0.2rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.topbar__actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.status-conexao {
+  margin: 0.75rem 2rem 0;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius);
+  background: rgba(229, 72, 77, 0.12);
+  border: 1px solid rgba(229, 72, 77, 0.4);
+  color: #ffb4b6;
+  font-size: 0.88rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Botões                                                                  */
+/* ---------------------------------------------------------------------- */
+.btn {
+  border-radius: 8px;
+  padding: 0.55rem 1rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.05s ease, background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.btn--primary:hover {
+  background: var(--accent-strong);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn--icon {
+  padding: 0.35rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.btn--danger:hover {
+  border-color: var(--sev-critical);
+  color: var(--sev-critical);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Layout                                                                  */
+/* ---------------------------------------------------------------------- */
+.layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem 3rem;
+  align-items: start;
+}
+
+@media (max-width: 920px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.painel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem 1.5rem;
+}
+
+.painel__cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.painel__cabecalho h2 {
+  font-size: 1.05rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Toolbar / filtros                                                      */
+/* ---------------------------------------------------------------------- */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.campo input,
+.campo select {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.5rem 0.65rem;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.campo--bloco {
+  margin-bottom: 1rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Tabela de ativos                                                        */
+/* ---------------------------------------------------------------------- */
+.tabela-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tabela th {
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  background: var(--surface-alt);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+}
+
+.tabela td {
+  padding: 0.7rem 0.9rem;
+  border-top: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.tabela tbody tr {
+  cursor: pointer;
+}
+
+.tabela tbody tr:hover {
+  background: var(--surface-alt);
+}
+
+.tabela tbody tr.linha-selecionada {
+  background: rgba(62, 217, 196, 0.09);
+}
+
+.tabela td.col-versao,
+.tabela th.col-versao {
+  font-family: var(--font-data);
+}
+
+.col-acoes {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.celula-vazia {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 1.6rem 0.9rem !important;
+}
+
+.linha-acoes {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: flex-end;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Paginação                                                               */
+/* ---------------------------------------------------------------------- */
+.paginacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Painel de detalhe / CVEs                                                */
+/* ---------------------------------------------------------------------- */
+.estado-vazio {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.ativo-cabecalho {
+  margin-bottom: 1rem;
+}
+
+.ativo-cabecalho__nome {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.ativo-cabecalho__versao {
+  font-family: var(--font-data);
+  color: var(--accent);
+}
+
+.ativo-cabecalho__termo {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 0.2rem;
+}
+
+.resumo-grafico {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 1rem 0 1.4rem;
+  padding: 1rem;
+  background: var(--surface-alt);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.resumo-linha {
+  display: grid;
+  grid-template-columns: 90px 1fr 34px;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.resumo-linha__rotulo {
+  color: var(--text-muted);
+}
+
+.resumo-linha__barra-fundo {
+  display: block;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.resumo-linha__barra {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.resumo-linha__valor {
+  font-family: var(--font-data);
+  text-align: right;
+}
+
+.lista-cves {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 55vh;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+}
+
+.cve-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  background: var(--bg);
+}
+
+.cve-card__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.cve-card__id {
+  font-family: var(--font-data);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.cve-card__descricao {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0.2rem 0 0.4rem;
+}
+
+.cve-card__rodape {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-family: var(--font-data);
+}
+
+/* Badge de severidade */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: var(--font-data);
+  color: #0b0f1a;
+}
+
+.badge--critical { background: var(--sev-critical); color: #fff; }
+.badge--high { background: var(--sev-high); color: #1a0e02; }
+.badge--medium { background: var(--sev-medium); color: #1a1502; }
+.badge--low { background: var(--sev-low); color: #04150c; }
+.badge--desconhecida { background: var(--sev-desconhecida); color: #fff; }
+
+.aviso {
+  padding: 0.8rem 0.95rem;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  background: var(--surface-alt);
+  color: var(--text-muted);
+}
+
+.aviso--erro {
+  border-color: rgba(229, 72, 77, 0.5);
+  background: rgba(229, 72, 77, 0.1);
+  color: #ffb4b6;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Dialogo (form modal)                                                    */
+/* ---------------------------------------------------------------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 15, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 20;
+}
+
+.dialogo {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.dialogo h2 {
+  margin-bottom: 1.1rem;
+  font-size: 1.05rem;
+}
+
+.dialogo__acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.form-erro {
+  color: #ffb4b6;
+  font-size: 0.82rem;
+  margin: -0.4rem 0 0.9rem;
+}
+
+[hidden] {
+  display: none !important;
+}
